@@ -7,9 +7,9 @@ def main():
     #path = input("Enter the file path : ").strip()
     # load the image
 
-    pytesseract.pytesseract.tesseract_cmd = r"/Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/pytesseract/pytesseract.py"
+    pytesseract.pytesseract.tesseract_cmd = r"/usr/local/Cellar/tesseract/4.0.0_1/bin/tesseract"
 
-    image = cv2.imread("image.jpg")
+    image = cv2.imread("image1.png")
     # Convert image to grayscale
 
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)

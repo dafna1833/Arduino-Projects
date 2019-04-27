@@ -1,13 +1,15 @@
 import cv2
 import numpy as np
 from matplotlib import pyplot as plt
+import numpy as np
 
-img = cv2.imread('image1.png',0)
+#the image size is 1944x2592
+img = cv2.imread('Bookshelf2.jpg',0)
 edges = cv2.Canny(img,100,200)
 
-plt.subplot(121),plt.imshow(img,cmap = 'gray')
-plt.title('Original Image'), plt.xticks([]), plt.yticks([])
-plt.subplot(122),plt.imshow(edges,cmap = 'gray')
-plt.title('Edge Image'), plt.xticks([]), plt.yticks([])
+ret,thresh = cv2.threshold(img,127,255,0)
+contours, hierarchy = cv2.findContours(thresh,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
+img = cv2.drawContours(img, contours, -1, (0,255,0), 3)
 
-plt.show()
+cv2.imshow('new', img)
+

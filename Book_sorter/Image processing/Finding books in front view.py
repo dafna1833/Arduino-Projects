@@ -23,8 +23,6 @@ for c in counter:
         cv2.drawContours(img, [approx], -1, (0, 255, 0), 4)
         total = total + 1
         pts1 = np.float32([approx])
-        print(pts1)
-        print(pts1[0][0][0][0])
         a = pts1[0][0][0][0]
         b = pts1[0][0][0][1]
         c = pts1[0][1][0][0]
@@ -34,10 +32,11 @@ for c in counter:
         g = pts1[0][3][0][0]
         h = pts1[0][3][0][1]
         array = np.float32([[a, b], [c, d], [e, f], [g, h]])
-        print(array)
-        M = cv2.getPerspectiveTransform(pts1, array)
+        M = cv2.getPerspectiveTransform(array, pts2)
         new = cv2.warpPerspective(img, M, (120,180))
         cv2.imshow("new", new)
+        if cv2.waitKey(1) & 0xFF == ord('q'):
+            cv2.DestroyWindow("new")
         print("This is one contour")
         print(approx)
 
